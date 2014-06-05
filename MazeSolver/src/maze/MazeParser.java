@@ -27,19 +27,22 @@ public class MazeParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		height = mazeList.size();
-		len = mazeList.get(0).length();
-		maze = new char[height][len];
-		String temp;
-		//convert arraylist into 2d array
-		for (int i = 0; i < height; i++) {
-			temp = mazeList.get(i);
-			for (int j = 0; j < temp.length(); j++) {
-				maze[i][j] = temp.charAt(j);
+		if (! mazeList.isEmpty()) {
+			height = mazeList.size();
+			len = mazeList.get(0).length();
+			maze = new char[height][len];
+			String temp;
+			int strlen = mazeList.get(0).length();
+			int curlen;
+			//convert arraylist into 2d array
+			for (int i = 0; i < height; i++) {
+				temp = mazeList.get(i);
+				curlen = temp.length();
+				for (int j = 0; j < Math.min(curlen, strlen); j++) {
+					maze[i][j] = temp.charAt(j);
+				}
 			}
 		}
-		
 		
 		//print out the maze (testing)
 //		for (int i = 0; i < height; i++) {

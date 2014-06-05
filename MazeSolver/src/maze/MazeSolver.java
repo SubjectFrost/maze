@@ -9,18 +9,23 @@ public class MazeSolver {
 		MazeParser mp = new MazeParser(filename);
 		
 		List<Coord> coordList = new ArrayList<Coord>();
-		//make an array list of all the empty coordinates
-		for (int i = 0; i < mp.maze.length; i++) {
-			for (int j = 0; j < mp.maze[0].length; j++) {
-				if(' ' == mp.maze[i][j]) {
-					coordList.add(new Coord(j, i));
+		
+		if (mp.maze != null) {
+			//make an array list of all the empty coordinates
+			for (int i = 0; i < mp.maze.length; i++) {
+				for (int j = 0; j < mp.maze[0].length; j++) {
+					if(' ' == mp.maze[i][j]) {
+						coordList.add(new Coord(j, i));
+					}
 				}
 			}
+			
+			
+			List<Coord> moves = Solve(coordList.get(0), coordList.get(coordList.size() - 1), coordList);
+			System.out.println(writeDirections(moves));
+		} else {
+			System.out.println("file empty");
 		}
-		
-		
-		List<Coord> moves = Solve(coordList.get(0), coordList.get(coordList.size() - 1), coordList);
-		System.out.println(writeDirections(moves));
 		
 	}
 	
